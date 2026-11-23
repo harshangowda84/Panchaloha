@@ -83,20 +83,20 @@ export const Header: React.FC<HeaderProps> = ({
   const trimmed = searchQuery.trim().toLowerCase();
   const searchResults = trimmed
     ? products.filter((p) => {
-        const tokens = trimmed.split(/\s+/).filter(Boolean);
-        if (!tokens.length) return true;
+      const tokens = trimmed.split(/\s+/).filter(Boolean);
+      if (!tokens.length) return true;
 
-        return tokens.every((token) => {
-          const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const regex = new RegExp(`\\b${escaped}`, 'i');
-          const nameMatch = regex.test(p.name);
-          const catMatch = regex.test(p.category);
-          const idMatch = regex.test(p.id.replace(/-/g, ' '));
-          const descMatch = regex.test(p.description);
+      return tokens.every((token) => {
+        const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b${escaped}`, 'i');
+        const nameMatch = regex.test(p.name);
+        const catMatch = regex.test(p.category);
+        const idMatch = regex.test(p.id.replace(/-/g, ' '));
+        const descMatch = regex.test(p.description);
 
-          return nameMatch || catMatch || idMatch || descMatch;
-        });
-      })
+        return nameMatch || catMatch || idMatch || descMatch;
+      });
+    })
     : [];
 
   const isShopActive = (cat: string) => {
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Main Luxury Navigation Bar */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-100 transition-all duration-300">
         <div className="w-full max-w-[1800px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
-          
+
           {/* Left: Brand Identity & Desktop Navigation */}
           <div className="flex items-center space-x-3 lg:space-x-5 xl:space-x-7 min-w-0">
             <button
@@ -130,13 +130,12 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center space-x-2.5 xl:space-x-4 2xl:space-x-6 text-[11px] xl:text-[12px] tracking-[0.05em] uppercase font-sans">
-              <button 
-                onClick={() => onNavigate('shop', 'all')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  isShopActive('all')
+              <button
+                onClick={() => onNavigate('shop', 'all')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${isShopActive('all')
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>Shop All</span>
                 {isShopActive('all') && (
@@ -144,13 +143,12 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </button>
 
-              <button 
-                onClick={() => onNavigate('shop', 'new-arrivals')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  isShopActive('new-arrivals')
+              <button
+                onClick={() => onNavigate('shop', 'new-arrivals')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${isShopActive('new-arrivals')
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>New Arrivals</span>
                 {isShopActive('new-arrivals') && (
@@ -158,13 +156,12 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </button>
 
-              <button 
-                onClick={() => onNavigate('shop', 'necklaces')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  isShopActive('necklaces')
+              <button
+                onClick={() => onNavigate('shop', 'necklaces')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${isShopActive('necklaces')
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>Necklaces</span>
                 {isShopActive('necklaces') && (
@@ -172,13 +169,12 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </button>
 
-              <button 
-                onClick={() => onNavigate('shop', 'rings')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  isShopActive('rings')
+              <button
+                onClick={() => onNavigate('shop', 'rings')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${isShopActive('rings')
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>Rings</span>
                 {isShopActive('rings') && (
@@ -186,13 +182,12 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </button>
 
-              <button 
-                onClick={() => onNavigate('shop', 'earrings')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  isShopActive('earrings')
+              <button
+                onClick={() => onNavigate('shop', 'earrings')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${isShopActive('earrings')
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>Earrings</span>
                 {isShopActive('earrings') && (
@@ -200,13 +195,12 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </button>
 
-              <button 
-                onClick={() => onNavigate('shop', 'bracelets')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  isShopActive('bracelets')
+              <button
+                onClick={() => onNavigate('shop', 'bracelets')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${isShopActive('bracelets')
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>Bangles & Bracelets</span>
                 {isShopActive('bracelets') && (
@@ -214,13 +208,12 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </button>
 
-              <button 
-                onClick={() => onNavigate('about')} 
-                className={`relative py-1.5 whitespace-nowrap transition-colors ${
-                  currentView === 'about'
+              <button
+                onClick={() => onNavigate('about')}
+                className={`relative py-1.5 whitespace-nowrap transition-colors ${currentView === 'about'
                     ? 'text-neutral-900 font-semibold'
                     : 'text-neutral-600 hover:text-black font-medium'
-                }`}
+                  }`}
               >
                 <span>About Us</span>
                 {currentView === 'about' && (
@@ -232,16 +225,15 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Right Action Icons: Search Toggle, Auth, Cart, Mobile Hamburger */}
           <div className="flex items-center space-x-2 sm:space-x-3.5 flex-shrink-0">
-            
+
             {/* Search Toggle Icon Button (Strictly Fixed 36px Width, Zero Layout Shift) */}
             <button
               ref={searchToggleBtnRef}
               onClick={() => setIsSearchExpanded(prev => !prev)}
-              className={`w-9 h-9 rounded-full flex items-center justify-center transition-all flex-shrink-0 focus:outline-none ${
-                isSearchExpanded
+              className={`w-9 h-9 rounded-full flex items-center justify-center transition-all flex-shrink-0 focus:outline-none ${isSearchExpanded
                   ? 'bg-neutral-900 text-white shadow-sm'
                   : 'text-neutral-800 hover:text-black hover:bg-neutral-100'
-              }`}
+                }`}
               title={isSearchExpanded ? "Close Search [ESC]" : "Search Fine Jewellery"}
               aria-label="Toggle Search"
             >
@@ -310,12 +302,12 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Below Navbar: Smooth Slide-Down Luxury Search Tray & Live Results */}
         {isSearchExpanded && (
-          <div 
+          <div
             ref={searchContainerRef}
             className="border-t border-neutral-200/90 bg-white/98 backdrop-blur-md shadow-2xl transition-all duration-300 ease-out animate-in slide-in-from-top-3 fade-in"
           >
             <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-4">
-              
+
               {/* Centered Luxury Search Form (Submit triggers full catalogue search) */}
               <form
                 onSubmit={(e) => {
