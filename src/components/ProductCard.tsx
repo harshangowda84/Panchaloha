@@ -76,20 +76,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onQuickAdd(product);
             }}
-            className="absolute bottom-3 right-3 w-9 h-9 bg-white text-black hover:bg-black hover:text-white rounded-full flex items-center justify-center shadow-md transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+            className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 w-8 h-8 sm:w-9 sm:h-9 bg-white text-black hover:bg-black hover:text-white rounded-full flex items-center justify-center shadow-md transition-all duration-300 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 translate-y-0 sm:translate-y-2 sm:group-hover:translate-y-0"
             title="Quick Add to Bag"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
         )}
       </div>
 
       {/* Product Details */}
       <div className="flex flex-col space-y-1 text-left">
-        <h3 className="font-serif text-lg font-normal text-neutral-900 group-hover:text-neutral-600 transition-colors line-clamp-1">
+        <h3 className="font-serif text-sm sm:text-base md:text-lg font-normal text-neutral-900 group-hover:text-neutral-600 transition-colors line-clamp-1">
           {product.name}
         </h3>
-        <p className="font-sans text-sm text-neutral-800 font-medium">
+        <p className="font-sans text-xs sm:text-sm text-neutral-800 font-medium">
           {product.currency} {product.price.toLocaleString('en-IN')}
         </p>
       </div>

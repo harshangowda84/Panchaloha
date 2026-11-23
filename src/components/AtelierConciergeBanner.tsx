@@ -22,8 +22,8 @@ export const AtelierConciergeBanner: React.FC = () => {
 
   return (
     <>
-      <section className="w-full bg-[#1A1A1A] text-white py-20 lg:py-28 font-sans overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="w-full bg-[#1A1A1A] text-white py-14 sm:py-20 lg:py-28 font-sans overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Overlapping Dual Editorial Frames with Hover Scale */}
           <div className="relative flex justify-center lg:justify-start items-center">
@@ -58,19 +58,19 @@ export const AtelierConciergeBanner: React.FC = () => {
               <span>Bespoke Concierge Advisory</span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-5xl font-light text-white tracking-tight leading-tight mb-5">
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight mb-4 sm:mb-5">
               Need Assistance Selecting Your Heirloom?
             </h2>
 
-            <p className="text-neutral-300 text-sm sm:text-base font-light leading-relaxed mb-8 max-w-lg">
+            <p className="text-neutral-300 text-xs sm:text-base font-light leading-relaxed mb-6 sm:mb-8 max-w-lg">
               Our master gemologists and personal bridal curators are available for private consultations—whether you seek guidance on diamond 4Cs, custom auspicious weights, or bespoke bridal harams.
             </p>
 
             {/* Dual CTAs (Joyalukkas Style) */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="px-7 py-3.5 bg-[#E0C79B] text-black hover:bg-white transition-all duration-300 rounded-full text-xs uppercase tracking-[0.2em] font-semibold flex items-center space-x-2 shadow-lg"
+                className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-[#E0C79B] text-black hover:bg-white transition-all duration-300 rounded-full text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center space-x-2 shadow-lg"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Book Atelier Consultation</span>
@@ -78,7 +78,7 @@ export const AtelierConciergeBanner: React.FC = () => {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="px-7 py-3.5 border border-neutral-600 hover:border-white text-white transition-all duration-300 rounded-full text-xs uppercase tracking-[0.2em] font-medium flex items-center space-x-2"
+                className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 border border-neutral-600 hover:border-white text-white transition-all duration-300 rounded-full text-xs uppercase tracking-[0.2em] font-medium flex items-center justify-center space-x-2"
               >
                 <Phone className="w-4 h-4" />
                 <span>Request Call Back</span>
@@ -86,7 +86,7 @@ export const AtelierConciergeBanner: React.FC = () => {
             </div>
 
             {/* Micro-Features */}
-            <div className="mt-10 pt-6 border-t border-neutral-800 grid grid-cols-2 gap-4 text-xs text-neutral-400">
+            <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-neutral-800 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs text-neutral-400">
               <div className="flex items-center space-x-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E0C79B]"></span>
                 <span>Virtual Video Walkthrough Available</span>

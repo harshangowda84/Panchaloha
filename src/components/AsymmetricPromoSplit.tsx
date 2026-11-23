@@ -7,10 +7,10 @@ interface AsymmetricPromoSplitProps {
 
 export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNavigate }) => {
   return (
-    <section className="py-20 lg:py-28 max-w-7xl mx-auto px-6 lg:px-12 bg-white font-sans">
+    <section className="py-14 sm:py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 bg-white font-sans">
       
       {/* Editorial Section Divider */}
-      <div className="text-center max-w-xl mx-auto mb-14">
+      <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
         <div className="flex items-center justify-center space-x-3 mb-2">
           <span className="w-12 h-[1px] bg-neutral-300"></span>
           <span className="text-brand-gold text-sm">✦</span>
@@ -19,18 +19,18 @@ export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNa
         <span className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 font-sans block mb-2 font-medium">
           Editorial Spotlight
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight">
+        <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight">
           The Luminary Diamond Suite
         </h2>
       </div>
 
       {/* 50/50 Asymmetric Promo Split Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
         
         {/* Left Column: Tall Portrait Campaign Card with Hover Zoom */}
         <div 
           onClick={() => onNavigate('shop', 'rings')}
-          className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg min-h-[520px] lg:min-h-[580px] flex flex-col justify-end p-8 sm:p-12 transition-all duration-500 hover:shadow-2xl"
+          className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg min-h-[420px] sm:min-h-[520px] lg:min-h-[580px] flex flex-col justify-end p-6 sm:p-10 lg:p-12 transition-all duration-500 hover:shadow-2xl"
         >
           {/* Zoom Image */}
           <div className="absolute inset-0 overflow-hidden bg-neutral-900">
@@ -49,7 +49,7 @@ export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNa
               <span>Certified Solitaire Edit</span>
             </div>
 
-            <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-3">
+            <h3 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-3">
               Unveil Your Inner Luminescence
             </h3>
 
@@ -99,24 +99,24 @@ export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNa
           </div>
 
           {/* Bottom 3-Tile Category Entry Matrix with Hover Zoom */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-3 gap-3 sm:gap-4">
             
             {/* Tile 1: Necklaces */}
             <div 
               onClick={() => onNavigate('shop', 'necklaces')}
-              className="group relative rounded-xl overflow-hidden cursor-pointer h-52 bg-neutral-100 border border-neutral-200 transition-all duration-300 hover:shadow-md"
+              className="group relative rounded-xl overflow-hidden cursor-pointer h-40 sm:h-52 bg-neutral-100 border border-neutral-200 transition-all duration-300 hover:shadow-md"
             >
               <img
                 src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=85"
                 alt="Necklaces"
                 className="w-full h-full object-cover object-center filter brightness-90 transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
-                <span className="font-serif text-lg font-normal group-hover:text-[#E0C79B] transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-3 sm:p-4 text-white">
+                <span className="font-serif text-base sm:text-lg font-normal group-hover:text-[#E0C79B] transition-colors">
                   Chains & Harams
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-neutral-300">
-                  15 Designs →
+                  14 Designs →
                 </span>
               </div>
             </div>
@@ -124,19 +124,19 @@ export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNa
             {/* Tile 2: Rings */}
             <div 
               onClick={() => onNavigate('shop', 'rings')}
-              className="group relative rounded-xl overflow-hidden cursor-pointer h-52 bg-neutral-100 border border-neutral-200 transition-all duration-300 hover:shadow-md"
+              className="group relative rounded-xl overflow-hidden cursor-pointer h-40 sm:h-52 bg-neutral-100 border border-neutral-200 transition-all duration-300 hover:shadow-md"
             >
               <img
                 src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=85"
                 alt="Rings"
                 className="w-full h-full object-cover object-center filter brightness-90 transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
-                <span className="font-serif text-lg font-normal group-hover:text-[#E0C79B] transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-3 sm:p-4 text-white">
+                <span className="font-serif text-base sm:text-lg font-normal group-hover:text-[#E0C79B] transition-colors">
                   Solitaire Rings
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-neutral-300">
-                  15 Designs →
+                  14 Designs →
                 </span>
               </div>
             </div>
@@ -144,19 +144,19 @@ export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNa
             {/* Tile 3: Earrings */}
             <div 
               onClick={() => onNavigate('shop', 'earrings')}
-              className="group relative rounded-xl overflow-hidden cursor-pointer h-52 bg-neutral-100 border border-neutral-200 transition-all duration-300 hover:shadow-md"
+              className="group relative rounded-xl overflow-hidden cursor-pointer h-40 sm:h-52 bg-neutral-100 border border-neutral-200 transition-all duration-300 hover:shadow-md"
             >
               <img
                 src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=85"
                 alt="Earrings"
                 className="w-full h-full object-cover object-center filter brightness-90 transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
-                <span className="font-serif text-lg font-normal group-hover:text-[#E0C79B] transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-3 sm:p-4 text-white">
+                <span className="font-serif text-base sm:text-lg font-normal group-hover:text-[#E0C79B] transition-colors">
                   Temple Jhumkas
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-neutral-300">
-                  15 Designs →
+                  14 Designs →
                 </span>
               </div>
             </div>

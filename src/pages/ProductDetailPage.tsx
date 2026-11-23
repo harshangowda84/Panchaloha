@@ -111,27 +111,27 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       
       {/* 1. Breadcrumbs & Back Navigation Header */}
       <div className="border-b border-neutral-100 bg-[#FAF9F6]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-3.5 flex items-center justify-between text-xs font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-3.5 flex items-center justify-between text-xs font-sans">
           
-          <div className="flex items-center space-x-2 text-neutral-500 overflow-x-auto">
+          <div className="flex items-center space-x-2 text-neutral-500 overflow-x-auto scrollbar-none">
             <button
               onClick={onBack}
-              className="hover:text-black transition-colors flex items-center space-x-1 uppercase tracking-[0.15em]"
+              className="hover:text-black transition-colors flex items-center space-x-1 uppercase tracking-[0.15em] flex-shrink-0"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
             </button>
             <span className="text-neutral-300">/</span>
-            <span className="uppercase tracking-[0.15em] hover:text-black cursor-pointer" onClick={onBack}>
+            <span className="uppercase tracking-[0.15em] hover:text-black cursor-pointer flex-shrink-0" onClick={onBack}>
               {categoryNameMap[product.category] || product.category}
             </span>
             <span className="text-neutral-300">/</span>
-            <span className="text-neutral-800 font-medium truncate max-w-[200px] sm:max-w-md">
+            <span className="text-neutral-800 font-medium truncate max-w-[140px] sm:max-w-md">
               {product.name}
             </span>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
             <button
               onClick={() => setIsWishlisted(!isWishlisted)}
               className="p-1.5 text-neutral-600 hover:text-red-500 transition-colors flex items-center space-x-1.5"
@@ -156,8 +156,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </div>
 
       {/* 2. Main Product Viewport: Gallery + Buying Suite */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-8 lg:pt-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8 lg:pt-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
           
           {/* LEFT: Multi-Angle Interactive Studio Gallery (7 cols) */}
           <div className="md:col-span-6 lg:col-span-7 md:sticky md:top-24 flex flex-col-reverse md:flex-row gap-4 lg:gap-6">
@@ -234,16 +234,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </div>
 
               {/* Product Title */}
-              <h1 className="font-serif text-3xl sm:text-4xl font-light text-neutral-900 tracking-tight leading-tight mb-3">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-neutral-900 tracking-tight leading-tight mb-2 sm:mb-3">
                 {product.name}
               </h1>
 
               {/* Pricing in Rupees */}
-              <div className="flex items-baseline space-x-3 mb-4">
-                <span className="font-serif text-3xl sm:text-4xl font-normal text-neutral-900">
+              <div className="flex flex-wrap items-baseline gap-2 sm:gap-3 mb-4">
+                <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-neutral-900">
                   {product.currency} {product.price.toLocaleString('en-IN')}
                 </span>
-                <span className="text-xs text-neutral-500 font-sans">
+                <span className="text-[11px] sm:text-xs text-neutral-500 font-sans">
                   (MRP inclusive of all taxes & insurance)
                 </span>
               </div>
@@ -421,13 +421,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </div>
 
       {/* 3. Detailed Specifications & Atelier Provenance Tabs */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-10 border-t border-neutral-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-neutral-200">
         
         {/* Tab Headers */}
-        <div className="flex space-x-8 border-b border-neutral-200 text-xs uppercase tracking-[0.2em] font-sans font-medium mb-8">
+        <div className="flex space-x-6 sm:space-x-8 border-b border-neutral-200 text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] font-sans font-medium mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none">
           <button
             onClick={() => setActiveTab('details')}
-            className={`pb-4 transition-colors ${
+            className={`pb-3 sm:pb-4 transition-colors flex-shrink-0 ${
               activeTab === 'details'
                 ? 'text-black border-b-2 border-black font-semibold'
                 : 'text-neutral-400 hover:text-black'
@@ -437,7 +437,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('specs')}
-            className={`pb-4 transition-colors ${
+            className={`pb-3 sm:pb-4 transition-colors flex-shrink-0 ${
               activeTab === 'specs'
                 ? 'text-black border-b-2 border-black font-semibold'
                 : 'text-neutral-400 hover:text-black'
@@ -447,7 +447,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('shipping')}
-            className={`pb-4 transition-colors ${
+            className={`pb-3 sm:pb-4 transition-colors flex-shrink-0 ${
               activeTab === 'shipping'
                 ? 'text-black border-b-2 border-black font-semibold'
                 : 'text-neutral-400 hover:text-black'
@@ -462,11 +462,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           {activeTab === 'details' && (
             <div className="space-y-6 text-sm text-neutral-600 font-light leading-relaxed">
               <p>{product.description}</p>
-              <div className="bg-[#FAF9F6] p-6 border border-neutral-100">
-                <h4 className="font-serif text-lg font-normal text-neutral-900 mb-3">
+              <div className="bg-[#FAF9F6] p-4 sm:p-6 border border-neutral-100">
+                <h4 className="font-serif text-base sm:text-lg font-normal text-neutral-900 mb-3">
                   Highlights of this Masterpiece
                 </h4>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-neutral-700">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs text-neutral-700">
                   {product.details.map((detail, idx) => (
                     <li key={idx} className="flex items-start space-x-2">
                       <span className="text-[#C5A880] mt-0.5">•</span>
@@ -479,26 +479,26 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           )}
 
           {activeTab === 'specs' && (
-            <div className="border border-neutral-200 overflow-hidden">
-              <table className="w-full text-xs text-left font-sans">
+            <div className="border border-neutral-200 overflow-x-auto">
+              <table className="w-full min-w-[320px] text-xs text-left font-sans">
                 <tbody className="divide-y divide-neutral-100">
                   <tr className="bg-neutral-50/50">
-                    <td className="py-3 px-4 font-medium text-neutral-900 w-1/3">Product Category</td>
-                    <td className="py-3 px-4 text-neutral-700 capitalize">{product.category}</td>
+                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 font-medium text-neutral-900 w-1/3">Product Category</td>
+                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-neutral-700 capitalize">{product.category}</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium text-neutral-900">Hallmark Standard</td>
-                    <td className="py-3 px-4 text-neutral-700">BIS Hallmarked with Laser HUID</td>
+                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 font-medium text-neutral-900">Hallmark Standard</td>
+                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-neutral-700">BIS Hallmarked with Laser HUID</td>
                   </tr>
                   {product.details.map((d, i) => (
                     <tr key={i} className={i % 2 === 0 ? 'bg-neutral-50/50' : ''}>
-                      <td className="py-3 px-4 font-medium text-neutral-900">Specification {i + 1}</td>
-                      <td className="py-3 px-4 text-neutral-700">{d}</td>
+                      <td className="py-2.5 sm:py-3 px-3 sm:px-4 font-medium text-neutral-900">Specification {i + 1}</td>
+                      <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-neutral-700">{d}</td>
                     </tr>
                   ))}
                   <tr>
-                    <td className="py-3 px-4 font-medium text-neutral-900">Available Metals</td>
-                    <td className="py-3 px-4 text-neutral-700">{product.materials.join(', ')}</td>
+                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 font-medium text-neutral-900">Available Metals</td>
+                    <td className="py-2.5 sm:py-3 px-3 sm:px-4 text-neutral-700">{product.materials.join(', ')}</td>
                   </tr>
                 </tbody>
               </table>
@@ -524,13 +524,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
       {/* 4. "You May Also Admire" (Curated Matching Ensemble) */}
       {relatedProducts.length > 0 && (
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-20 pt-12 border-t border-neutral-200">
-          <div className="flex items-end justify-between mb-10 pb-4 border-b border-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mt-14 sm:mt-20 pt-8 sm:pt-12 border-t border-neutral-200">
+          <div className="flex items-end justify-between mb-8 sm:mb-10 pb-4 border-b border-neutral-100">
             <div>
-              <span className="text-[11px] uppercase tracking-[0.25em] text-neutral-400 font-sans block mb-1">
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-neutral-400 font-sans block mb-1">
                 Harmonious Pairings
               </span>
-              <h2 className="font-serif text-3xl font-light text-neutral-900 tracking-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl font-light text-neutral-900 tracking-tight">
                 You May Also Admire
               </h2>
             </div>
@@ -538,11 +538,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               onClick={onBack}
               className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-neutral-800 hover:text-black transition-colors"
             >
-              View Full Collection →
+              View All →
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {relatedProducts.map((relProd) => (
               <ProductCard
                 key={relProd.id}

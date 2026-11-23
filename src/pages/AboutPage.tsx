@@ -10,21 +10,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onExplore }) => {
     <div className="min-h-screen bg-white font-sans">
       
       {/* Editorial Story Header */}
-      <section className="py-20 lg:py-32 max-w-4xl mx-auto px-6 text-center">
+      <section className="py-12 sm:py-20 lg:py-32 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="text-xs uppercase tracking-[0.35em] text-neutral-400 font-sans block mb-3">
           The Spirit of Panchaloha
         </span>
-        <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-900 tracking-tight leading-[1.08] mb-8">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-7xl font-light text-neutral-900 tracking-tight leading-[1.08] mb-6 sm:mb-8">
           Authenticity is the <br />
           <span className="italic font-normal">new luxury</span>
         </h1>
-        <p className="font-serif text-xl sm:text-2xl text-neutral-600 font-light italic leading-relaxed max-w-2xl mx-auto">
+        <p className="font-serif text-lg sm:text-2xl text-neutral-600 font-light italic leading-relaxed max-w-2xl mx-auto">
           "Jewelry should not be a costume. It should be an extension of the self."
         </p>
       </section>
 
       {/* Hero Studio Image */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-12 mb-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-14 sm:mb-24">
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100 shadow-xl">
           <img
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=2000&q=85"
@@ -35,13 +35,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onExplore }) => {
       </section>
 
       {/* Main Narrative Split */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-12 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 text-neutral-700 font-light leading-relaxed text-sm sm:text-base">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 pb-14 sm:pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 text-neutral-700 font-light leading-relaxed text-sm sm:text-base">
           <div>
-            <h3 className="font-serif text-2xl text-neutral-900 font-normal mb-4">
+            <h3 className="font-serif text-xl sm:text-2xl text-neutral-900 font-normal mb-3 sm:mb-4">
               Permanent Over Fleeting
             </h3>
-            <p className="mb-6">
+            <p className="mb-4 sm:mb-6">
               Panchaloha was founded on a simple premise: jewelry is an intimate sculpture meant to endure lifetimes. We moved deliberately away from trend-chasing to focus on heavy gold weights, tactile organic settings, and architectural silhouettes that feel timelessly modern.
             </p>
             <p>
@@ -50,10 +50,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onExplore }) => {
           </div>
 
           <div>
-            <h3 className="font-serif text-2xl text-neutral-900 font-normal mb-4">
+            <h3 className="font-serif text-xl sm:text-2xl text-neutral-900 font-normal mb-3 sm:mb-4">
               Small Batches, Zero Compromise
             </h3>
-            <p className="mb-6">
+            <p className="mb-4 sm:mb-6">
               We produce in strictly limited batches to eliminate deadstock and preserve artisanal purity. Our metals are 100% certified recycled 18k noble gold and sterling silver, cast through ancient lost-wax metallurgy paired with precision tension engineering.
             </p>
             <p>
@@ -64,20 +64,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onExplore }) => {
       </section>
 
       {/* Interactive Hand-Annotated Atelier Sketch Section */}
-      <section className="w-full bg-[#FAF9F5] py-24 border-y border-neutral-200">
-        <div className="max-w-6xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-[#FAF9F5] py-14 sm:py-24 border-y border-neutral-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           
-          <div className="text-center max-w-xl mx-auto mb-16">
+          <div className="text-center max-w-xl mx-auto mb-10 sm:mb-16">
             <span className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 font-sans block mb-2">
               Atelier Blueprint
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-neutral-900">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light text-neutral-900">
               The Anatomy of a Form
             </h2>
           </div>
 
           {/* Sketch Card with Callout Annotations */}
-          <div className="relative bg-white border border-neutral-300 p-8 sm:p-14 shadow-lg grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="relative bg-white border border-neutral-300 p-5 sm:p-8 md:p-14 shadow-lg grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 items-center">
             
             {/* Visual Sketch Graphic */}
             <div className="relative aspect-square bg-[#FCFCFB] p-6 border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">

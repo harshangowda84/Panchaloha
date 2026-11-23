@@ -62,11 +62,11 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       />
 
       {/* Slide-Over Drawer */}
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-4 sm:pl-10">
         <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
           
           {/* Header */}
-          <div className="p-6 border-b border-neutral-100 flex items-center justify-between">
+          <div className="p-4 sm:p-6 border-b border-neutral-100 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <span className="font-serif text-2xl font-light text-neutral-900">Your Bag</span>
               <span className="text-xs uppercase tracking-[0.2em] text-neutral-400 font-sans">

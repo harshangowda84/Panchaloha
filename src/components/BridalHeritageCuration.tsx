@@ -42,19 +42,19 @@ export const BridalHeritageCuration: React.FC<BridalHeritageCurationProps> = ({ 
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAF9F5] border-y border-neutral-200 font-sans">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section className="py-14 sm:py-20 lg:py-28 bg-[#FAF9F5] border-y border-neutral-200 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-4 border-b border-neutral-200 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-14 pb-4 border-b border-neutral-200 gap-4">
           <div>
             <div className="flex items-center space-x-2 mb-2">
               <span className="w-8 h-[1px] bg-neutral-400"></span>
-              <span className="text-[11px] uppercase tracking-[0.3em] text-neutral-500 font-medium">
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-neutral-500 font-medium">
                 Bridal & Occasion
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight">
               Curated Bridal Collections
             </h2>
           </div>
@@ -69,7 +69,7 @@ export const BridalHeritageCuration: React.FC<BridalHeritageCurationProps> = ({ 
         </div>
 
         {/* 4-Card Bridal Grid with Hover Zoom & Card Lift */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {collections.map((item) => (
             <div
               key={item.id}
@@ -85,7 +85,7 @@ export const BridalHeritageCuration: React.FC<BridalHeritageCurationProps> = ({ 
                 />
                 
                 {/* Badge */}
-                <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.18em] font-sans font-medium text-neutral-900 shadow-sm border border-neutral-100">
+                <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 bg-white/95 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.18em] font-sans font-medium text-neutral-900 shadow-sm border border-neutral-100">
                   {item.badge}
                 </div>
 
@@ -93,17 +93,17 @@ export const BridalHeritageCuration: React.FC<BridalHeritageCurationProps> = ({ 
               </div>
 
               {/* Card Footer Details */}
-              <div className="p-5 flex flex-col justify-between flex-1">
+              <div className="p-3.5 sm:p-5 flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="font-serif text-xl font-normal text-neutral-900 group-hover:text-[#9A7B38] transition-colors mb-1.5">
+                  <h3 className="font-serif text-base sm:text-xl font-normal text-neutral-900 group-hover:text-[#9A7B38] transition-colors mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-neutral-500 text-xs font-light leading-relaxed">
+                  <p className="text-neutral-500 text-[11px] sm:text-xs font-light leading-relaxed line-clamp-2">
                     {item.tagline}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs uppercase tracking-[0.18em] font-medium text-neutral-900 group-hover:text-black">
+                <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-neutral-100 flex items-center justify-between text-[10px] sm:text-xs uppercase tracking-[0.18em] font-medium text-neutral-900 group-hover:text-black">
                   <span>Discover More</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>

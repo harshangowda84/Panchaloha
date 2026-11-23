@@ -7,15 +7,15 @@ interface GiftingBentoMatrixProps {
 
 export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNavigate }) => {
   return (
-    <section className="py-20 lg:py-28 max-w-7xl mx-auto px-6 lg:px-12 bg-white font-sans">
+    <section className="py-14 sm:py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 bg-white font-sans">
       
       {/* Section Header */}
-      <div className="text-center max-w-xl mx-auto mb-14">
+      <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
         <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.3em] text-neutral-400 mb-2">
           <Gift className="w-4 h-4 text-[#C5A880]" />
           <span>Heirloom Gifting</span>
         </div>
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight mb-3">
+        <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight mb-3">
           Jewels That Commemorate A Lifetime
         </h2>
         <p className="text-neutral-500 text-xs sm:text-sm font-light">
@@ -24,12 +24,12 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
       </div>
 
       {/* 4-Zone Bento Matrix */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         
         {/* Card 1: Anniversary & Wedding Milestone (Large Left Bento) */}
         <div 
           onClick={() => onNavigate('shop', 'rings')}
-          className="md:col-span-2 group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[380px] sm:min-h-[420px] flex flex-col justify-end p-8 sm:p-12 transition-all duration-500 hover:shadow-2xl bg-[#1A1A1A]"
+          className="md:col-span-2 group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[300px] sm:min-h-[400px] flex flex-col justify-end p-5 sm:p-8 md:p-12 transition-all duration-500 hover:shadow-2xl bg-[#1A1A1A]"
         >
           <div className="absolute inset-0 overflow-hidden">
             <img
@@ -45,10 +45,10 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
               <Heart className="w-3.5 h-3.5 fill-[#E0C79B]" />
               <span>Anniversary & Eternal Commitments</span>
             </div>
-            <h3 className="font-serif text-3xl sm:text-4xl font-light text-white mb-2 leading-tight">
+            <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-white mb-2 leading-tight">
               Shared-Prong Eternity Rings
             </h3>
-            <p className="text-neutral-300 text-xs sm:text-sm font-light mb-6 leading-relaxed">
+            <p className="text-neutral-300 text-xs sm:text-sm font-light mb-4 sm:mb-6 leading-relaxed">
               Celebrate decade milestones with unbroken circles of calibrated round diamonds set in solid 18KT gold.
             </p>
             <span className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-medium text-white border-b border-white pb-1 group-hover:border-[#E0C79B] group-hover:text-[#E0C79B] transition-colors">
@@ -61,7 +61,7 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
         {/* Card 2: Auspicious Puja & Festivities */}
         <div 
           onClick={() => onNavigate('shop', 'necklaces')}
-          className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[380px] sm:min-h-[420px] flex flex-col justify-end p-8 transition-all duration-500 hover:shadow-2xl bg-[#2A1D12]"
+          className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[280px] sm:min-h-[380px] flex flex-col justify-end p-5 sm:p-8 transition-all duration-500 hover:shadow-2xl bg-[#2A1D12]"
         >
           <div className="absolute inset-0 overflow-hidden">
             <img
@@ -77,7 +77,7 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
               <Award className="w-3.5 h-3.5" />
               <span>Auspicious Blessings</span>
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-light text-white mb-2">
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-light text-white mb-2">
               Lakshmi Harams & Coins
             </h3>
             <p className="text-neutral-300 text-xs font-light mb-4 leading-relaxed">
@@ -93,7 +93,7 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
         {/* Card 3: Newborn & Milestone Keepsakes */}
         <div 
           onClick={() => onNavigate('shop', 'bracelets')}
-          className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[320px] flex flex-col justify-end p-8 transition-all duration-500 hover:shadow-2xl bg-[#1F1E24]"
+          className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[260px] sm:min-h-[320px] flex flex-col justify-end p-5 sm:p-8 transition-all duration-500 hover:shadow-2xl bg-[#1F1E24]"
         >
           <div className="absolute inset-0 overflow-hidden">
             <img
@@ -108,7 +108,7 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#E0C79B] font-medium block mb-1">
               Newborn Keepsakes
             </span>
-            <h3 className="font-serif text-2xl font-light text-white mb-2">
+            <h3 className="font-serif text-xl sm:text-2xl font-light text-white mb-2">
               Sacred Nazariya Kadas
             </h3>
             <p className="text-neutral-300 text-xs font-light mb-4">
@@ -124,7 +124,7 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
         {/* Card 4: Bespoke Private Client Gift Certificate (Span 2) */}
         <div 
           onClick={() => onNavigate('shop', 'all')}
-          className="md:col-span-2 group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[320px] flex flex-col justify-end p-8 sm:p-10 transition-all duration-500 hover:shadow-2xl bg-[#141414] border border-neutral-800"
+          className="md:col-span-2 group relative rounded-2xl overflow-hidden cursor-pointer shadow-md min-h-[280px] sm:min-h-[320px] flex flex-col justify-end p-5 sm:p-8 md:p-10 transition-all duration-500 hover:shadow-2xl bg-[#141414] border border-neutral-800"
         >
           <div className="absolute inset-0 overflow-hidden">
             <img
@@ -140,14 +140,14 @@ export const GiftingBentoMatrix: React.FC<GiftingBentoMatrixProps> = ({ onNaviga
               <Sparkles className="w-3.5 h-3.5" />
               <span>Privileged Atelier Acquisition</span>
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-light text-white mb-2 leading-snug">
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-light text-white mb-2 leading-snug">
               Bespoke Heirloom Gift Vouchers
             </h3>
             <p className="text-neutral-300 text-xs sm:text-sm font-light mb-4 leading-relaxed">
               Allow your recipient to commission custom iconometry or select their signature bridal piece with our Master Goldsmiths.
             </p>
-            <button className="px-6 py-2.5 bg-white text-black group-hover:bg-[#E0C79B] transition-colors rounded-full text-xs uppercase tracking-[0.2em] font-medium inline-flex items-center space-x-2">
-              <span>View All 55 Pieces</span>
+            <button className="px-5 sm:px-6 py-2.5 bg-white text-black group-hover:bg-[#E0C79B] transition-colors rounded-full text-[11px] sm:text-xs uppercase tracking-[0.2em] font-medium inline-flex items-center space-x-2">
+              <span>View All 56 Pieces</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

@@ -33,8 +33,8 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
       />
 
       {/* Drawer Container */}
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between p-8 sm:p-12 animate-in slide-in-from-right duration-300">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-4 sm:pl-10">
+        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between p-6 sm:p-10 animate-in slide-in-from-right duration-300">
           
           {/* Top Header of Drawer */}
           <div>
@@ -62,7 +62,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             </div>
 
             {/* Main Links Stack */}
-            <nav className="mt-12 flex flex-col space-y-7">
+            <nav className="mt-8 sm:mt-12 flex flex-col space-y-4 sm:space-y-6">
               <button
                 onClick={() => handleLinkClick('shop', 'all')}
                 className="text-left font-serif text-3xl sm:text-4xl font-light text-neutral-900 hover:text-neutral-500 hover:translate-x-2 transition-all flex items-center justify-between group"

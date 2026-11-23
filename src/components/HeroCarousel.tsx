@@ -74,7 +74,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onExplore }) => {
 
   return (
     <section 
-      className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#111111]"
+      className="relative w-full min-h-[75vh] sm:min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#111111]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -103,32 +103,32 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onExplore }) => {
       ))}
 
       {/* Hero Typography & CTA Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full py-24 flex flex-col justify-end lg:justify-center items-start text-white">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full py-16 sm:py-24 flex flex-col justify-end lg:justify-center items-start text-white">
         <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700 key={activeSlide.id}">
           
           {/* Eyebrow */}
-          <div className="inline-flex items-center space-x-2 mb-4">
-            <span className="w-6 h-[1px] bg-brand-gold"></span>
-            <p className="text-xs sm:text-sm uppercase tracking-[0.35em] text-[#E0C79B] font-sans font-medium">
+          <div className="inline-flex items-center space-x-2 mb-3 sm:mb-4">
+            <span className="w-4 sm:w-6 h-[1px] bg-brand-gold"></span>
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[#E0C79B] font-sans font-medium">
               {activeSlide.eyebrow}
             </p>
           </div>
 
           {/* Headline H1 */}
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.08] mb-6 drop-shadow-md">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-4 sm:mb-6 drop-shadow-md">
             {activeSlide.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-neutral-200 text-sm sm:text-base font-light font-sans leading-relaxed mb-8 max-w-xl drop-shadow">
+          <p className="text-neutral-200 text-xs sm:text-sm md:text-base font-light font-sans leading-relaxed mb-6 sm:mb-8 max-w-xl drop-shadow">
             {activeSlide.subtitle}
           </p>
 
           {/* CTA Button Group */}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <button
               onClick={() => onExplore(activeSlide.category)}
-              className="px-7 py-3.5 bg-white text-black hover:bg-[#E0C79B] hover:text-black transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-semibold flex items-center space-x-2 group shadow-xl"
+              className="px-6 sm:px-7 py-3 sm:py-3.5 bg-white text-black hover:bg-[#E0C79B] hover:text-black transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-semibold flex items-center justify-center space-x-2 group shadow-xl"
             >
               <span>{activeSlide.ctaText}</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -137,7 +137,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onExplore }) => {
             {activeSlide.secondaryCtaText && (
               <button
                 onClick={() => onExplore(activeSlide.category === 'new-arrivals' ? 'rings' : 'earrings')}
-                className="px-7 py-3.5 border border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-medium backdrop-blur-sm"
+                className="px-6 sm:px-7 py-3 sm:py-3.5 border border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 text-xs uppercase tracking-[0.22em] font-sans font-medium backdrop-blur-sm text-center"
               >
                 {activeSlide.secondaryCtaText}
               </button>
@@ -150,18 +150,18 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onExplore }) => {
       {/* Navigation Arrows Pinned to Edges (Joyalukkas Style) */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/40 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 focus:outline-none"
+        className="absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 focus:outline-none"
         aria-label="Previous Slide"
       >
-        <ChevronLeft className="w-5 h-5 stroke-[1.5]" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/40 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 focus:outline-none"
+        className="absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/80 text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 focus:outline-none"
         aria-label="Next Slide"
       >
-        <ChevronRight className="w-5 h-5 stroke-[1.5]" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]" />
       </button>
 
       {/* Slide Pagination Indicator (Joyalukkas Numbered Counter & Dots) */}

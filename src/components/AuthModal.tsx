@@ -39,8 +39,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 font-sans">
-      <div className="relative w-full max-w-md bg-white shadow-2xl p-8 sm:p-10 animate-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 font-sans">
+      <div className="relative w-full max-w-md bg-white shadow-2xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto rounded-xl animate-in zoom-in-95 duration-200">
         
         {/* Close Button */}
         <button

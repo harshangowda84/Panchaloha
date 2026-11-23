@@ -36,15 +36,15 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Luxury Navigation Bar */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-100 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
           
           {/* Left: Brand Identity */}
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-4 sm:space-x-8">
             <button
               onClick={() => onNavigate('home')}
               className="text-left group focus:outline-none"
             >
-              <span className="font-serif text-3xl md:text-4xl tracking-[0.18em] font-light uppercase text-neutral-900 group-hover:text-neutral-600 transition-colors">
+              <span className="font-serif text-2xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.18em] font-light uppercase text-neutral-900 group-hover:text-neutral-600 transition-colors">
                 PANCHALOHA
               </span>
               <span className="block text-[8px] uppercase tracking-[0.35em] text-neutral-400 -mt-1 font-sans font-medium">
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Right Action Icons: Auth, Cart, Hamburger */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-3 sm:space-x-6">
             
             {/* Account / Login */}
             <button

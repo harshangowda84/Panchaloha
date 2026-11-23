@@ -169,7 +169,7 @@ export function App() {
   const spotlightProduct = PRODUCTS.find(p => p.isSpotlight) || PRODUCTS[0];
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-[#C5A880]/20 selection:text-neutral-900">
+    <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-[#C5A880]/20 selection:text-neutral-900 w-full overflow-x-hidden">
       
       {/* Navigation Header */}
       <Header

@@ -61,22 +61,22 @@ export const ShopPage: React.FC<ShopPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans pt-6 sm:pt-8 pb-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="min-h-screen bg-white font-sans pt-4 sm:pt-8 pb-16 sm:pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Compact Single-Row Header Toolbar */}
-        <div className="flex items-center justify-between pb-4 mb-8 border-b border-neutral-200">
-          <div className="flex items-baseline space-x-3">
-            <h1 className="font-serif text-2xl sm:text-3xl font-light text-neutral-900 tracking-tight">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 sm:mb-8 border-b border-neutral-200 gap-3">
+          <div className="flex items-baseline space-x-2 sm:space-x-3">
+            <h1 className="font-serif text-xl sm:text-3xl font-light text-neutral-900 tracking-tight">
               {categoryTitles[selectedCategory] || 'Fine Jewellery'}
             </h1>
-            <span className="text-xs uppercase tracking-[0.18em] text-neutral-400 font-sans font-medium">
+            <span className="text-[11px] sm:text-xs uppercase tracking-[0.18em] text-neutral-400 font-sans font-medium">
               ({filteredProducts.length} {filteredProducts.length === 1 ? 'Design' : 'Designs'})
             </span>
           </div>
 
-          <div className="flex items-center space-x-2">
-            <span className="text-xs uppercase tracking-[0.15em] text-neutral-400 hidden sm:inline">Sort:</span>
+          <div className="flex items-center justify-between sm:justify-end space-x-2">
+            <span className="text-xs uppercase tracking-[0.15em] text-neutral-400">Sort:</span>
             <div className="relative inline-flex items-center">
               <select
                 value={sortBy}
@@ -93,8 +93,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({
           </div>
         </div>
 
-        {/* 3-Column Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {/* 2 to 3-Column Product Grid */}
+        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 lg:gap-10">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}

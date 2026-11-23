@@ -13,7 +13,7 @@ export const SpotlightFeature: React.FC<SpotlightFeatureProps> = ({
   onSelect
 }) => {
   return (
-    <section className="relative w-full py-24 lg:py-36 overflow-hidden bg-[#EFECE6]">
+    <section className="relative w-full py-14 sm:py-24 lg:py-36 overflow-hidden bg-[#EFECE6]">
       {/* Background Editorial Ambient Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -29,8 +29,8 @@ export const SpotlightFeature: React.FC<SpotlightFeatureProps> = ({
       </div>
 
       {/* Foreground Content Container with Floating Luxury Card */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 flex justify-start lg:justify-end">
-        <div className="w-full max-w-md bg-white/95 backdrop-blur-md p-8 sm:p-12 shadow-2xl border border-white/40">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-center lg:justify-end">
+        <div className="w-full max-w-md bg-white/95 backdrop-blur-md p-5 sm:p-8 md:p-12 shadow-2xl border border-white/40 rounded-xl">
           
           <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-sans block mb-3">
             Spotlight Masterpiece

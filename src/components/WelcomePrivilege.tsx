@@ -30,12 +30,12 @@ export const WelcomePrivilege: React.FC = () => {
         </div>
 
         {/* Right Column: Editorial Copy & Offer Unlock */}
-        <div className="p-8 sm:p-14 lg:p-20 flex flex-col justify-center">
-          <span className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 font-sans block mb-3">
+        <div className="p-5 sm:p-10 lg:p-20 flex flex-col justify-center">
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-neutral-400 font-sans block mb-2 sm:mb-3">
             Exclusive Invitation
           </span>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight mb-5">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-neutral-900 tracking-tight mb-3 sm:mb-5">
             The Welcome Privilege
           </h2>
 
