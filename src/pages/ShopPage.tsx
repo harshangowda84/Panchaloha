@@ -36,16 +36,23 @@ export const ShopPage: React.FC<ShopPageProps> = ({
   const filteredProducts = useMemo(() => {
     let result = [...products];
 
-    // Filter by Search Query if present
+    // Smart keyword filtering with word boundaries
     if (searchQuery && searchQuery.trim()) {
-      const term = searchQuery.trim().toLowerCase();
-      result = result.filter(
-        p =>
-          p.name.toLowerCase().includes(term) ||
-          p.category.toLowerCase().includes(term) ||
-          p.description.toLowerCase().includes(term) ||
-          p.id.toLowerCase().includes(term)
-      );
+      const tokens = searchQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      if (tokens.length > 0) {
+        result = result.filter((p) => {
+          return tokens.every((token) => {
+            const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`\\b${escaped}`, 'i');
+            const nameMatch = regex.test(p.name);
+            const catMatch = regex.test(p.category);
+            const idMatch = regex.test(p.id.replace(/-/g, ' '));
+            const descMatch = regex.test(p.description);
+
+            return nameMatch || catMatch || idMatch || descMatch;
+          });
+        });
+      }
     }
 
     // Filter by Category

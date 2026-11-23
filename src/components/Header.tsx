@@ -79,16 +79,24 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSearchExpanded]);
 
-  // Real-time live filtering
+  // Real-time smart keyword filtering with word boundaries
   const trimmed = searchQuery.trim().toLowerCase();
   const searchResults = trimmed
-    ? products.filter(
-        (p) =>
-          p.name.toLowerCase().includes(trimmed) ||
-          p.category.toLowerCase().includes(trimmed) ||
-          p.description.toLowerCase().includes(trimmed) ||
-          p.id.toLowerCase().includes(trimmed)
-      )
+    ? products.filter((p) => {
+        const tokens = trimmed.split(/\s+/).filter(Boolean);
+        if (!tokens.length) return true;
+
+        return tokens.every((token) => {
+          const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp(`\\b${escaped}`, 'i');
+          const nameMatch = regex.test(p.name);
+          const catMatch = regex.test(p.category);
+          const idMatch = regex.test(p.id.replace(/-/g, ' '));
+          const descMatch = regex.test(p.description);
+
+          return nameMatch || catMatch || idMatch || descMatch;
+        });
+      })
     : [];
 
   const isShopActive = (cat: string) => {
