@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
       </div>
 
       {/* Hero Typography & CTA Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full py-24 flex flex-col justify-end lg:justify-center items-start text-white">
+      <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 w-full py-24 flex flex-col justify-end lg:justify-center items-start text-white">
         <div className="max-w-2xl animate-in fade-in duration-700">
           
           {/* Eyebrow */}

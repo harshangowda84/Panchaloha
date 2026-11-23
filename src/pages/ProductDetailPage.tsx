@@ -111,7 +111,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       
       {/* 1. Breadcrumbs & Back Navigation Header */}
       <div className="border-b border-neutral-100 bg-[#FAF9F6]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-3.5 flex items-center justify-between text-xs font-sans">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-3 sm:py-3.5 flex items-center justify-between text-xs font-sans">
           
           <div className="flex items-center space-x-2 text-neutral-500 overflow-x-auto scrollbar-none">
             <button
@@ -156,7 +156,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </div>
 
       {/* 2. Main Product Viewport: Gallery + Buying Suite */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8 lg:pt-12">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 pt-6 sm:pt-8 lg:pt-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
           
           {/* LEFT: Multi-Angle Interactive Studio Gallery (7 cols) */}
@@ -421,7 +421,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </div>
 
       {/* 3. Detailed Specifications & Atelier Provenance Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-neutral-200">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-neutral-200">
         
         {/* Tab Headers */}
         <div className="flex space-x-6 sm:space-x-8 border-b border-neutral-200 text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] font-sans font-medium mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none">
@@ -524,7 +524,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
       {/* 4. "You May Also Admire" (Curated Matching Ensemble) */}
       {relatedProducts.length > 0 && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mt-14 sm:mt-20 pt-8 sm:pt-12 border-t border-neutral-200">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mt-14 sm:mt-20 pt-8 sm:pt-12 border-t border-neutral-200">
           <div className="flex items-end justify-between mb-8 sm:mb-10 pb-4 border-b border-neutral-100">
             <div>
               <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-neutral-400 font-sans block mb-1">
@@ -542,7 +542,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             </button>
           </div>
 
-          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 xl:gap-8">
             {relatedProducts.map((relProd) => (
               <ProductCard
                 key={relProd.id}

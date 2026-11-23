@@ -16,10 +16,10 @@ export const ChainsCarousel: React.FC<ChainsCarouselProps> = ({
   onQuickAdd,
   onViewAll
 }) => {
-  const necklaces = products.filter(p => p.category === 'necklaces').slice(0, 3);
+  const necklaces = products.filter(p => p.category === 'necklaces').slice(0, 4);
 
   return (
-    <section className="py-14 sm:py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 bg-white">
+    <section className="py-14 sm:py-20 lg:py-28 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 bg-white">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 pb-4 border-b border-neutral-100 gap-4">
         <div>
@@ -40,8 +40,8 @@ export const ChainsCarousel: React.FC<ChainsCarouselProps> = ({
         </button>
       </div>
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 lg:gap-10">
+      {/* Products Grid (2 columns on mobile, 4 on desktop) */}
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 xl:gap-8">
         {necklaces.map((product) => (
           <ProductCard
             key={product.id}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { X, User, Instagram, ArrowRight } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { X, User, Instagram, ArrowRight, Search } from 'lucide-react';
 import { ViewState } from '../types';
 
 interface NavigationDrawerProps {
@@ -17,6 +17,17 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   onOpenAuth,
   user
 }) => {
+  // Lock background scroll when mobile sidebar drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleLinkClick = (view: ViewState, category?: string) => {
@@ -27,7 +38,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
@@ -35,7 +46,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
       {/* Drawer Container */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-4 sm:pl-10">
         <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between p-6 sm:p-10 animate-in slide-in-from-right duration-300">
-          
+
           {/* Top Header of Drawer */}
           <div>
             <div className="flex items-center justify-between pb-8 border-b border-neutral-100">
@@ -61,6 +72,20 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
               </button>
             </div>
 
+            {/* Quick Mobile Explore Trigger */}
+            <button
+              onClick={() => {
+                handleLinkClick('shop', 'all');
+              }}
+              className="mt-6 w-full flex items-center justify-between px-4 py-3 bg-[#FAF9F6] border border-neutral-200 rounded-xl text-neutral-400 hover:text-neutral-700 hover:border-neutral-300 transition-colors text-xs text-left"
+            >
+              <div className="flex items-center space-x-2.5">
+                <Search className="w-4 h-4 text-neutral-500" />
+                <span>Search fine jewellery...</span>
+              </div>
+              <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-medium">Explore</span>
+            </button>
+
             {/* Main Links Stack */}
             <nav className="mt-8 sm:mt-12 flex flex-col space-y-4 sm:space-y-6">
               <button
@@ -83,7 +108,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                 onClick={() => handleLinkClick('shop', 'necklaces')}
                 className="text-left font-serif text-3xl sm:text-4xl font-light text-neutral-900 hover:text-neutral-500 hover:translate-x-2 transition-all flex items-center justify-between group"
               >
-                <span>Necklaces</span>
+                <span>Chains</span>
                 <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-neutral-400" />
               </button>
 
@@ -118,6 +143,14 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                 <span>About Us</span>
                 <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-neutral-400" />
               </button>
+
+              <button
+                onClick={() => handleLinkClick('cart')}
+                className="text-left font-serif text-2xl sm:text-3xl font-light text-neutral-900 hover:text-neutral-500 hover:translate-x-2 transition-all flex items-center justify-between group"
+              >
+                <span>Shopping Bag</span>
+                <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-neutral-400" />
+              </button>
             </nav>
           </div>
 
@@ -126,8 +159,8 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             <div className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2 font-sans">
               Private Concierge
             </div>
-            <a 
-              href="mailto:concierge@panchalohajewels.com" 
+            <a
+              href="mailto:concierge@panchalohajewels.com"
               className="text-sm text-neutral-800 hover:text-black font-sans block mb-6 transition-colors"
             >
               concierge@panchalohajewels.com

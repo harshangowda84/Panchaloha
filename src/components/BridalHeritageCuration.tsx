@@ -43,7 +43,7 @@ export const BridalHeritageCuration: React.FC<BridalHeritageCurationProps> = ({ 
 
   return (
     <section className="py-14 sm:py-20 lg:py-28 bg-[#FAF9F5] border-y border-neutral-200 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-14 pb-4 border-b border-neutral-200 gap-4">
@@ -68,8 +68,8 @@ export const BridalHeritageCuration: React.FC<BridalHeritageCurationProps> = ({ 
           </button>
         </div>
 
-        {/* 4-Card Bridal Grid with Hover Zoom & Card Lift */}
-        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        {/* 2-Col Mobile to 4-Col Desktop Grid with Hover Zoom & Card Lift */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
           {collections.map((item) => (
             <div
               key={item.id}

@@ -7,7 +7,7 @@ interface AsymmetricPromoSplitProps {
 
 export const AsymmetricPromoSplit: React.FC<AsymmetricPromoSplitProps> = ({ onNavigate }) => {
   return (
-    <section className="py-14 sm:py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 bg-white font-sans">
+    <section className="py-14 sm:py-20 lg:py-28 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 bg-white font-sans">
       
       {/* Editorial Section Divider */}
       <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14">

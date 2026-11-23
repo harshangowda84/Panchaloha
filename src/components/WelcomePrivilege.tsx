@@ -15,7 +15,7 @@ export const WelcomePrivilege: React.FC = () => {
 
   return (
     <section className="w-full bg-[#FAF9F5] border-y border-neutral-200">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 grid grid-cols-1 lg:grid-cols-2 items-center">
         
         {/* Left Column: High-Key Portrait Image */}
         <div className="relative aspect-[4/3] lg:aspect-auto lg:h-[540px] w-full overflow-hidden bg-neutral-200">

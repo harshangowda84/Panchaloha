@@ -29,7 +29,7 @@ export const SpotlightFeature: React.FC<SpotlightFeatureProps> = ({
       </div>
 
       {/* Foreground Content Container with Floating Luxury Card */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex justify-center lg:justify-end">
+      <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 flex justify-center lg:justify-end">
         <div className="w-full max-w-md bg-white/95 backdrop-blur-md p-5 sm:p-8 md:p-12 shadow-2xl border border-white/40 rounded-xl">
           
           <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-sans block mb-3">

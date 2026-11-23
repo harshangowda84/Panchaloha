@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PRODUCTS } from './data/products';
-import { Product, CartItem, ViewState } from './types';
+import { Product, CartItem, ViewState, Order } from './types';
 import { Header } from './components/Header';
 import { NavigationDrawer } from './components/NavigationDrawer';
 import { HeroCarousel } from './components/HeroCarousel';
@@ -20,11 +20,42 @@ import { BackToTopFloating } from './components/BackToTopFloating';
 import { ShopPage } from './pages/ShopPage';
 import { AboutPage } from './pages/AboutPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
+import { CartPage } from './pages/CartPage';
+import { OrderConfirmationPage } from './pages/OrderConfirmationPage';
+import { AdminPage } from './pages/AdminPage';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<ViewState>('home');
+  const [currentView, setCurrentView] = useState<ViewState>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash;
+      if (hash === '#admin') return 'admin';
+      if (hash === '#cart') return 'cart';
+      if (hash === '#order-confirmation') return 'order-confirmation';
+      if (hash.startsWith('#product-')) return 'pdp';
+      if (hash.startsWith('#shop')) return 'shop';
+      if (hash === '#about') return 'about';
+    }
+    return 'home';
+  });
   const [currentCategory, setCurrentCategory] = useState<string>('all');
+  const [activeSearchQuery, setActiveSearchQuery] = useState<string>('');
   
+  // Dynamic Products State (persisted with fallback to scraped PRODUCTS)
+  const [products, setProducts] = useState<Product[]>(() => {
+    try {
+      const saved = localStorage.getItem('panchaloha_products');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+      return PRODUCTS;
+    } catch {
+      return PRODUCTS;
+    }
+  });
+
   // Modals & Drawers
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -44,6 +75,16 @@ export function App() {
     }
   });
 
+  // Last Confirmed Order State (Persisted)
+  const [currentOrder, setCurrentOrder] = useState<Order | null>(() => {
+    try {
+      const saved = localStorage.getItem('panchaloha_last_order');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
   useEffect(() => {
     try {
       localStorage.setItem('panchaloha_cart', JSON.stringify(cartItems));
@@ -56,9 +97,24 @@ export function App() {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash;
+      if (hash === '#admin') {
+        setCurrentView('admin');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (hash === '#cart') {
+        setCurrentView('cart');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (hash === '#order-confirmation') {
+        setCurrentView('order-confirmation');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       if (hash.startsWith('#product-')) {
         const prodId = hash.replace('#product-', '');
-        const found = PRODUCTS.find(p => p.id === prodId);
+        const found = products.find(p => p.id === prodId) || PRODUCTS.find(p => p.id === prodId);
         if (found) {
           setSelectedProduct(found);
           setCurrentCategory(found.category);
@@ -66,44 +122,68 @@ export function App() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
         }
-      } else if (hash.startsWith('#shop')) {
+      }
+      if (hash.startsWith('#shop')) {
         const cat = hash.replace('#shop-', '').replace('#shop', '');
         setCurrentCategory(cat || 'all');
         setCurrentView('shop');
-      } else if (hash === '#about') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (hash === '#about') {
         setCurrentView('about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (!hash || hash === '#' || hash === '#home') {
+        setCurrentView('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 
     handleHash();
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
-  }, []);
+  }, [products]);
 
   // Navigate helper
   const handleNavigate = (view: ViewState, category: string = 'all') => {
+    setActiveSearchQuery('');
     setCurrentView(view);
     if (category) {
       setCurrentCategory(category);
     }
-    if (view === 'shop') {
-      try {
+    
+    try {
+      if (view === 'shop') {
         window.history.pushState(null, '', category !== 'all' ? `#shop-${category}` : '#shop');
-      } catch {
-        // ignore
-      }
-    } else if (view === 'home') {
-      try {
+      } else if (view === 'home') {
         window.history.pushState(null, '', ' ');
-      } catch {
-        // ignore
-      }
-    } else if (view === 'about') {
-      try {
+      } else if (view === 'about') {
         window.history.pushState(null, '', '#about');
-      } catch {
-        // ignore
+      } else if (view === 'cart') {
+        window.history.pushState(null, '', '#cart');
+      } else if (view === 'admin') {
+        window.history.pushState(null, '', '#admin');
+      } else if (view === 'order-confirmation') {
+        window.history.pushState(null, '', '#order-confirmation');
       }
+    } catch {
+      // ignore
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Submit search and display matching results exclusively in catalogue
+  const handleSearchSubmit = (query: string) => {
+    setActiveSearchQuery(query);
+    setCurrentCategory('all');
+    setCurrentView('shop');
+    try {
+      window.history.pushState(null, '', '#shop');
+    } catch {
+      // ignore
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -163,10 +243,123 @@ export function App() {
     setCartItems([]);
   };
 
+  // Checkout Execution -> Generates Order and navigates to Order Confirmation Page
+  const handleProceedToCheckout = (discountAmount: number = 0, promoCode: string = '') => {
+    const activeItems = cartItems.length > 0 ? cartItems : [
+      { product: products[0], quantity: 1, selectedMaterial: products[0].materials[0] }
+    ];
+
+    const subtotalWithGst = activeItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+    const gstRate = 3;
+    const baseSubtotal = Math.round(subtotalWithGst / (1 + gstRate / 100));
+    const gstAmount = subtotalWithGst - baseSubtotal;
+    const total = Math.max(0, subtotalWithGst - discountAmount);
+
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+
+    const deliveryDateObj = new Date(today);
+    deliveryDateObj.setDate(today.getDate() + 3);
+    const formattedDelivery = deliveryDateObj.toLocaleDateString('en-IN', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+
+    const newOrder: Order = {
+      id: `PCL-2026-${Math.floor(10000 + Math.random() * 90000)}`,
+      date: formattedDate,
+      deliveryDate: formattedDelivery,
+      trackingNumber: `SEQUEL-IND-${Math.floor(100000 + Math.random() * 900000)}`,
+      customer: {
+        name: user ? user.name : 'Sophia Laurent',
+        email: user ? user.email : 'sophia.laurent@private-client.com',
+        phone: '98801 24789',
+        address: 'Villa 14, Lavelle Road Crescent, Shantala Nagar',
+        city: 'Bengaluru',
+        state: 'Karnataka',
+        pincode: '560001'
+      },
+      items: activeItems,
+      subtotal: baseSubtotal,
+      gstAmount: gstAmount,
+      gstRate: gstRate,
+      discountAmount: discountAmount,
+      total: total,
+      paymentMethod: promoCode ? `100% Insured Escrow (Voucher ${promoCode} Applied)` : '100% Insured Escrow NetBanking'
+    };
+
+    setCurrentOrder(newOrder);
+    try {
+      localStorage.setItem('panchaloha_last_order', JSON.stringify(newOrder));
+    } catch {
+      // ignore
+    }
+
+    setCartItems([]);
+    setIsCartOpen(false);
+    handleNavigate('order-confirmation');
+  };
+
+  // Admin Product Updates
+  const handleUpdateProduct = (updated: Product) => {
+    setProducts(prev => {
+      const next = prev.map(p => p.id === updated.id ? updated : p);
+      try {
+        localStorage.setItem('panchaloha_products', JSON.stringify(next));
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+
+    if (selectedProduct && selectedProduct.id === updated.id) {
+      setSelectedProduct(updated);
+    }
+
+    setCartItems(prev =>
+      prev.map(item =>
+        item.product.id === updated.id ? { ...item, product: updated } : item
+      )
+    );
+  };
+
+  const handleResetToDefaults = () => {
+    if (window.confirm('Reset all product titles, descriptions, and prices to initial catalogue?')) {
+      setProducts(PRODUCTS);
+      try {
+        localStorage.removeItem('panchaloha_products');
+      } catch {
+        // ignore
+      }
+      alert('Catalogue restored to initial authentic values!');
+    }
+  };
+
   const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   // Find spotlight masterpiece product
-  const spotlightProduct = PRODUCTS.find(p => p.isSpotlight) || PRODUCTS[0];
+  const spotlightProduct = products.find(p => p.isSpotlight) || products[0];
+
+  // Dedicated Isolated Admin Panel (#admin) - completely isolated from storefront chrome
+  if (currentView === 'admin') {
+    return (
+      <AdminPage
+        products={products}
+        onUpdateProduct={handleUpdateProduct}
+        onResetToDefaults={handleResetToDefaults}
+        onBackToStore={() => handleNavigate('home')}
+        onViewProductPdp={(p) => {
+          handleSelectProduct(p);
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-[#C5A880]/20 selection:text-neutral-900 w-full overflow-x-hidden">
@@ -181,6 +374,9 @@ export function App() {
         onOpenNavDrawer={() => setIsNavDrawerOpen(true)}
         onOpenAuth={() => setIsAuthOpen(true)}
         user={user}
+        products={products}
+        onSelectProduct={handleSelectProduct}
+        onSearchSubmit={handleSearchSubmit}
       />
 
       {/* Main View Router */}
@@ -195,7 +391,7 @@ export function App() {
 
             {/* 3. Chains & Pendants Carousel */}
             <ChainsCarousel
-              products={PRODUCTS}
+              products={products}
               onSelectProduct={handleSelectProduct}
               onQuickAdd={(p) => handleAddToCart(p, 1)}
               onViewAll={() => handleNavigate('shop', 'necklaces')}
@@ -215,7 +411,7 @@ export function App() {
 
             {/* 7. Popular Earrings Showcase */}
             <EarringsGrid
-              products={PRODUCTS}
+              products={products}
               onSelectProduct={handleSelectProduct}
               onQuickAdd={(p) => handleAddToCart(p, 1)}
               onViewAll={() => handleNavigate('shop', 'earrings')}
@@ -234,8 +430,10 @@ export function App() {
 
         {currentView === 'shop' && (
           <ShopPage
-            products={PRODUCTS}
+            products={products}
             initialCategory={currentCategory}
+            searchQuery={activeSearchQuery}
+            onClearSearch={() => setActiveSearchQuery('')}
             onSelectProduct={handleSelectProduct}
             onQuickAdd={(p) => handleAddToCart(p, 1)}
           />
@@ -244,11 +442,60 @@ export function App() {
         {currentView === 'pdp' && selectedProduct && (
           <ProductDetailPage
             product={selectedProduct}
-            allProducts={PRODUCTS}
+            allProducts={products}
             onSelectProduct={handleSelectProduct}
             onAddToCart={handleAddToCart}
             onBack={() => handleNavigate('shop', selectedProduct.category)}
             onOpenCart={() => setIsCartOpen(true)}
+          />
+        )}
+
+        {currentView === 'cart' && (
+          <CartPage
+            items={cartItems}
+            onUpdateQuantity={handleUpdateQuantity}
+            onRemoveItem={handleRemoveItem}
+            onClearCart={handleClearCart}
+            onSelectProduct={handleSelectProduct}
+            onContinueShopping={() => handleNavigate('shop', 'all')}
+            onProceedToCheckout={handleProceedToCheckout}
+          />
+        )}
+
+        {currentView === 'order-confirmation' && (
+          <OrderConfirmationPage
+            order={
+              currentOrder || {
+                id: 'PCL-2026-78421',
+                date: '23 Nov 2026',
+                deliveryDate: '26 Nov 2026',
+                trackingNumber: 'SEQUEL-IND-778219',
+                customer: {
+                  name: user ? user.name : 'Sophia Laurent',
+                  email: user ? user.email : 'sophia.laurent@private-client.com',
+                  phone: '98801 24789',
+                  address: 'Villa 14, Lavelle Road Crescent, Shantala Nagar',
+                  city: 'Bengaluru',
+                  state: 'Karnataka',
+                  pincode: '560001'
+                },
+                items: [
+                  {
+                    product: products[0],
+                    quantity: 1,
+                    selectedMaterial: '22KT Pure Yellow Gold',
+                    selectedSize: '18 Inches'
+                  }
+                ],
+                subtotal: Math.round(products[0].price / 1.03),
+                gstAmount: products[0].price - Math.round(products[0].price / 1.03),
+                gstRate: 3,
+                discountAmount: 0,
+                total: products[0].price,
+                paymentMethod: '100% Insured Escrow NetBanking'
+              }
+            }
+            onContinueShopping={() => handleNavigate('shop', 'all')}
           />
         )}
 
@@ -276,6 +523,8 @@ export function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
+        onViewCartPage={() => handleNavigate('cart')}
+        onProceedToCheckout={handleProceedToCheckout}
       />
 
       <AuthModal

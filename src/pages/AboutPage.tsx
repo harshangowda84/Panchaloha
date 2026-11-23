@@ -24,11 +24,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onExplore }) => {
       </section>
 
       {/* Hero Studio Image */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-14 sm:mb-24">
+      <section className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mb-14 sm:mb-24">
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-100 shadow-xl">
           <img
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=2000&q=85"
-            alt="Érice Atelier Studio"
+            alt="Panchaloha Atelier Studio"
             className="w-full h-full object-cover object-center filter brightness-[0.97]"
           />
         </div>
@@ -142,7 +142,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onExplore }) => {
       </section>
 
       {/* Sustainable Principles Grid */}
-      <section className="py-24 max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-24 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="text-center p-8 border border-neutral-100 bg-[#FAFAFA]">
             <Compass className="w-6 h-6 mx-auto mb-4 text-neutral-700" />

@@ -27,7 +27,7 @@ export const TrustProvenanceBar: React.FC = () => {
 
   return (
     <section className="bg-[#FAF9F6] border-y border-neutral-200 py-6 sm:py-8 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {assurances.map((item, idx) => {
             const Icon = item.icon;

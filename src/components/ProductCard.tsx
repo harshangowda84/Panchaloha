@@ -26,13 +26,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div 
-      className="group flex flex-col cursor-pointer transition-all duration-300"
+      className="group flex flex-col cursor-pointer transition-all duration-300 bg-white border border-neutral-200/90 hover:border-neutral-400 p-2 sm:p-3 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-md hover:-translate-y-0.5"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onSelect(product)}
     >
       {/* Image Container with Hover Flip */}
-      <div className="relative aspect-square w-full bg-[#FBFBFA] overflow-hidden mb-4 border border-neutral-100">
+      <div className="relative aspect-square w-full bg-[#FAF9F6] overflow-hidden mb-2.5 sm:mb-3 rounded-lg border border-neutral-200/60">
         
         {/* Primary Studio Image */}
         <img
@@ -64,7 +64,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Badge (New Arrival / Spotlight) */}
         {product.isNewArrival && (
-          <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] uppercase tracking-[0.2em] font-sans px-2.5 py-1 text-neutral-800">
+          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-white/95 backdrop-blur-sm text-[9px] sm:text-[10px] uppercase tracking-[0.18em] font-sans px-2 py-0.5 rounded text-neutral-800 shadow-sm border border-neutral-200/50">
             New
           </span>
         )}
@@ -76,17 +76,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               onQuickAdd(product);
             }}
-            className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 w-8 h-8 sm:w-9 sm:h-9 bg-white text-black hover:bg-black hover:text-white rounded-full flex items-center justify-center shadow-md transition-all duration-300 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 translate-y-0 sm:translate-y-2 sm:group-hover:translate-y-0"
+            className="absolute bottom-2 right-2 sm:bottom-2.5 sm:right-2.5 w-7 h-7 sm:w-8 sm:h-8 bg-white text-black hover:bg-black hover:text-white rounded-full flex items-center justify-center shadow-md transition-all duration-300 opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
             title="Quick Add to Bag"
           >
-            <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <Plus className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
 
       {/* Product Details */}
-      <div className="flex flex-col space-y-1 text-left">
-        <h3 className="font-serif text-sm sm:text-base md:text-lg font-normal text-neutral-900 group-hover:text-neutral-600 transition-colors line-clamp-1">
+      <div className="flex flex-col space-y-0.5 sm:space-y-1 text-left px-0.5">
+        <h3 className="font-serif text-xs sm:text-sm md:text-base font-normal text-neutral-900 group-hover:text-neutral-600 transition-colors line-clamp-1">
           {product.name}
         </h3>
         <p className="font-sans text-xs sm:text-sm text-neutral-800 font-medium">

@@ -19,7 +19,7 @@ export const EarringsGrid: React.FC<EarringsGridProps> = ({
   const earrings = products.filter(p => p.category === 'earrings').slice(0, 4);
 
   return (
-    <section className="py-14 sm:py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 bg-white">
+    <section className="py-14 sm:py-20 lg:py-28 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 bg-white">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 pb-4 border-b border-neutral-100 gap-4">
         <div>
@@ -40,8 +40,8 @@ export const EarringsGrid: React.FC<EarringsGridProps> = ({
         </button>
       </div>
 
-      {/* 4-Column Grid */}
-      <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
+      {/* 2-Col Mobile to 4-Col Desktop Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 xl:gap-8">
         {earrings.map((product) => (
           <ProductCard
             key={product.id}

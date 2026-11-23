@@ -103,7 +103,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ onExplore }) => {
       ))}
 
       {/* Hero Typography & CTA Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full py-16 sm:py-24 flex flex-col justify-end lg:justify-center items-start text-white">
+      <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 w-full py-16 sm:py-24 flex flex-col justify-end lg:justify-center items-start text-white">
         <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700 key={activeSlide.id}">
           
           {/* Eyebrow */}

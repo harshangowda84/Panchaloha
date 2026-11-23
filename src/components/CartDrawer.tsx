@@ -9,6 +9,8 @@ interface CartDrawerProps {
   onUpdateQuantity: (productId: string, quantity: number) => void;
   onRemoveItem: (productId: string) => void;
   onClearCart: () => void;
+  onViewCartPage?: () => void;
+  onProceedToCheckout?: (discountAmount: number, promoCode: string) => void;
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({
@@ -17,7 +19,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   items,
   onUpdateQuantity,
   onRemoveItem,
-  onClearCart
+  onClearCart,
+  onViewCartPage,
+  onProceedToCheckout
 }) => {
   const [promoCode, setPromoCode] = useState('');
   const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
@@ -47,10 +51,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   };
 
   const handleCheckout = () => {
-    setOrderComplete(true);
-    setTimeout(() => {
-      onClearCart();
-    }, 1500);
+    if (onProceedToCheckout) {
+      onClose();
+      onProceedToCheckout(discountAmount, promoSuccess ? promoCode : '');
+    } else {
+      setOrderComplete(true);
+      setTimeout(() => {
+        onClearCart();
+      }, 1500);
+    }
   };
 
   return (
@@ -246,13 +255,27 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </p>
                 </div>
               ) : (
-                <button
-                  onClick={handleCheckout}
-                  className="w-full mt-4 py-3.5 bg-black text-white hover:bg-neutral-800 transition-all text-xs uppercase tracking-[0.2em] font-medium flex items-center justify-center space-x-2 group"
-                >
-                  <span>Proceed to Private Checkout</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div className="space-y-2 mt-4">
+                  <button
+                    onClick={handleCheckout}
+                    className="w-full py-3.5 bg-black text-white hover:bg-neutral-800 transition-all text-xs uppercase tracking-[0.2em] font-medium flex items-center justify-center space-x-2 group shadow-md"
+                  >
+                    <span>Proceed to Private Checkout</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+
+                  {onViewCartPage && (
+                    <button
+                      onClick={() => {
+                        onClose();
+                        onViewCartPage();
+                      }}
+                      className="w-full py-2.5 border border-neutral-300 hover:border-black text-neutral-800 hover:text-black transition-colors text-xs uppercase tracking-[0.18em] font-medium"
+                    >
+                      View Full Bag & GST Slip
+                    </button>
+                  )}
+                </div>
               )}
 
               <p className="text-[10px] text-center text-neutral-400 mt-3 uppercase tracking-[0.1em]">
