@@ -360,7 +360,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 {/* Instant Luxury Buy Now */}
                 <button
                   onClick={handleBuyNow}
-                  className="w-full h-12 border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white uppercase tracking-[0.2em] text-xs font-sans font-medium transition-colors"
+                  className="w-full h-12 border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[11px] sm:text-xs font-sans font-medium transition-colors"
                 >
                   Buy Now with Express Insured Dispatch
                 </button>

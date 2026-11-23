@@ -31,11 +31,16 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
   if (!isOpen) return null;
 
-  const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const discountAmount = subtotal * appliedDiscount;
-  const total = Math.max(0, subtotal - discountAmount);
+  const subtotalWithGst = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const gstRate = 3; // 3% standard on precious jewellery in India
+  const discountAmount = subtotalWithGst * appliedDiscount;
+  const total = Math.max(0, subtotalWithGst - discountAmount);
+  const basePriceTotal = Math.round(subtotalWithGst / 1.03);
+  const gstAmount = subtotalWithGst - basePriceTotal;
+  const cgstAmount = Math.round(gstAmount / 2);
+  const sgstAmount = gstAmount - cgstAmount;
   const freeShippingThreshold = 50000;
-  const progressToFreeShipping = Math.min(100, (subtotal / freeShippingThreshold) * 100);
+  const progressToFreeShipping = Math.min(100, (subtotalWithGst / freeShippingThreshold) * 100);
 
   const handleApplyPromo = (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,15 +97,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           </div>
 
           {/* Free Shipping Progress Indicator */}
-          <div className="bg-[#FAF9F6] px-6 py-3 border-b border-neutral-100 text-xs">
-            {subtotal >= freeShippingThreshold ? (
+          <div className="bg-[#FAF9F6] px-4 sm:px-6 py-3 border-b border-neutral-100 text-xs">
+            {subtotalWithGst >= freeShippingThreshold ? (
               <div className="text-neutral-800 flex items-center space-x-1.5 font-medium">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                 <span>You qualify for Complimentary Insured Express Courier!</span>
               </div>
             ) : (
               <div className="text-neutral-600">
-                Add <span className="font-semibold text-black">₹{(freeShippingThreshold - subtotal).toLocaleString('en-IN')}</span> more to unlock Complimentary Insured Shipping.
+                Add <span className="font-semibold text-black">₹{(freeShippingThreshold - subtotalWithGst).toLocaleString('en-IN')}</span> more to unlock Complimentary Insured Shipping.
               </div>
             )}
             <div className="w-full bg-neutral-200 h-1 mt-2 rounded-full overflow-hidden">
@@ -160,6 +165,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
                       <div className="text-xs text-neutral-800 font-medium mt-1">
                         {item.product.currency} {item.product.price.toLocaleString('en-IN')}
+                      </div>
+                      <div className="text-[10px] text-neutral-400 font-sans">
+                        Incl. 3% GST (₹{Math.round((item.product.price * item.quantity) - ((item.product.price * item.quantity) / 1.03)).toLocaleString('en-IN')})
                       </div>
                     </div>
 
@@ -223,25 +231,54 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 )}
               </form>
 
-              {/* Price Calculations */}
-              <div className="space-y-1.5 text-xs text-neutral-600 pb-4 border-b border-neutral-200">
+              {/* Price Calculations with Detailed Statutory Indian GST Breakdown */}
+              <div className="space-y-2 text-xs text-neutral-600 pb-4 border-b border-neutral-200">
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>₹{subtotal.toLocaleString('en-IN')}</span>
+                  <span>Base Jewellery Value</span>
+                  <span className="font-medium text-neutral-800">₹{basePriceTotal.toLocaleString('en-IN')}</span>
                 </div>
+                
+                {/* Statutory 3% GST Breakdown Box */}
+                <div className="bg-[#FAF9F5] p-2.5 rounded-lg border border-neutral-200/70 space-y-1">
+                  <div className="flex justify-between items-center text-neutral-800 font-medium">
+                    <span className="flex items-center space-x-1">
+                      <span>Total Statutory GST ({gstRate}%)</span>
+                    </span>
+                    <span className="text-neutral-900 font-semibold">₹{gstAmount.toLocaleString('en-IN')}</span>
+                  </div>
+                  <div className="flex justify-between text-[11px] text-neutral-500 font-mono">
+                    <span>CGST (1.5%)</span>
+                    <span>₹{cgstAmount.toLocaleString('en-IN')}</span>
+                  </div>
+                  <div className="flex justify-between text-[11px] text-neutral-500 font-mono">
+                    <span>SGST (1.5%)</span>
+                    <span>₹{sgstAmount.toLocaleString('en-IN')}</span>
+                  </div>
+                </div>
+
+                <div className="flex justify-between">
+                  <span>Subtotal (Incl. 3% GST)</span>
+                  <span className="font-medium text-neutral-800">₹{subtotalWithGst.toLocaleString('en-IN')}</span>
+                </div>
+
                 {appliedDiscount > 0 && (
                   <div className="flex justify-between text-emerald-600 font-medium">
                     <span>Privilege 15% Off</span>
                     <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
                   </div>
                 )}
+
                 <div className="flex justify-between">
                   <span>Insured Express Shipping</span>
-                  <span className="text-neutral-900 font-medium">Complimentary</span>
+                  <span className="text-emerald-700 font-medium">Complimentary</span>
                 </div>
-                <div className="flex justify-between text-neutral-900 font-medium text-sm pt-2">
-                  <span>Estimated Total</span>
-                  <span>₹{total.toLocaleString('en-IN')}</span>
+
+                <div className="flex justify-between items-baseline text-neutral-900 font-medium text-sm pt-2 border-t border-neutral-200">
+                  <span className="uppercase tracking-wider text-xs font-semibold">Total Payable</span>
+                  <span className="font-serif text-lg font-semibold text-neutral-900">₹{total.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="text-[10px] text-neutral-400 text-right">
+                  Includes 100% Transit Insurance & GST
                 </div>
               </div>
 

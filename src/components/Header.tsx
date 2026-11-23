@@ -106,13 +106,13 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {/* Top Announcement Bar */}
-      <div className="bg-[#1A1A1A] text-[#FAFAFA] text-[11px] uppercase tracking-[0.25em] py-2.5 text-center font-sans font-light px-4">
+      <div className="bg-[#1A1A1A] text-[#FAFAFA] text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.25em] py-2 sm:py-2.5 text-center font-sans font-light px-3 sm:px-4">
         Complimentary 100% Insured Delivery Across India & Signature Luxury Packaging
       </div>
 
       {/* Main Luxury Navigation Bar */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-100 transition-all duration-300">
-        <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 h-16 sm:h-20 flex items-center justify-between gap-4">
+        <div className="w-full max-w-[1800px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
           
           {/* Left: Brand Identity & Desktop Navigation */}
           <div className="flex items-center space-x-3 lg:space-x-5 xl:space-x-7 min-w-0">
@@ -120,10 +120,10 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onNavigate('home')}
               className="text-left group focus:outline-none flex-shrink-0"
             >
-              <span className="font-serif text-xl sm:text-2xl md:text-3xl tracking-[0.14em] font-light uppercase text-neutral-900 group-hover:text-neutral-600 transition-colors">
+              <span className="font-serif text-lg min-[380px]:text-xl sm:text-2xl md:text-3xl tracking-[0.08em] min-[380px]:tracking-[0.12em] sm:tracking-[0.14em] font-light uppercase text-neutral-900 group-hover:text-neutral-600 transition-colors">
                 PANCHALOHA
               </span>
-              <span className="block text-[8px] uppercase tracking-[0.35em] text-neutral-400 -mt-0.5 font-sans font-medium">
+              <span className="block text-[7px] sm:text-[8px] uppercase tracking-[0.22em] sm:tracking-[0.35em] text-neutral-400 -mt-0.5 font-sans font-medium">
                 Fine Jewellery
               </span>
             </button>
@@ -265,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Luxury Structured Shopping Tote Bag with Counter Badge */}
             <button
               onClick={onOpenCart}
-              className="group relative flex items-center space-x-2 text-neutral-900 hover:text-neutral-600 transition-colors py-1.5 px-2 focus:outline-none"
+              className="group relative flex items-center justify-center sm:space-x-2 text-neutral-900 hover:text-neutral-600 transition-colors w-9 h-9 sm:w-auto sm:h-auto py-1.5 px-1.5 sm:px-2 rounded-full sm:rounded-none hover:bg-neutral-100 sm:hover:bg-transparent focus:outline-none"
               aria-label="Shopping Cart"
             >
               <div className="relative flex items-center justify-center">
@@ -287,7 +287,7 @@ export const Header: React.FC<HeaderProps> = ({
                   </span>
                 )}
               </div>
-              <span className="text-[12px] uppercase tracking-[0.1em] font-sans font-medium text-neutral-900">
+              <span className="hidden sm:inline text-[12px] uppercase tracking-[0.1em] font-sans font-medium text-neutral-900">
                 Bag ({cartCount})
               </span>
             </button>
@@ -337,7 +337,7 @@ export const Header: React.FC<HeaderProps> = ({
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search gold necklaces, solitaire rings, bridal jhumkas, kadas..."
+                  placeholder="Search gold necklaces, solitaire rings, bridal jhumkas..."
                   className="w-full bg-transparent text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none font-sans"
                 />
                 {searchQuery && (
@@ -356,9 +356,10 @@ export const Header: React.FC<HeaderProps> = ({
                     setIsSearchExpanded(false);
                     setSearchQuery('');
                   }}
-                  className="text-[10px] uppercase tracking-wider text-neutral-500 hover:text-black border-l border-neutral-300 pl-2.5 font-medium flex-shrink-0"
+                  className="text-[10px] uppercase tracking-wider text-neutral-500 hover:text-black border-l border-neutral-300 pl-2 sm:pl-2.5 font-medium flex-shrink-0"
                 >
-                  Close [ESC]
+                  <span className="hidden sm:inline">Close [ESC]</span>
+                  <span className="sm:hidden font-bold px-1">✕</span>
                 </button>
               </form>
 
